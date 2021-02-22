@@ -7,16 +7,19 @@ import {
 import Nav from './components/nav';
 import SignIn from './components/sign-in';
 import LogIn from './components/log-in';
+import { UserContextProvider } from './user-context';
 import './styles/index.scss';
 
 const App = () => {
     return (
         <Router>
-            <Nav />
-            <Switch>
-                <Route path='/sign-in' component={SignIn}/>
-                <Route path='/login' component={LogIn}/>
-            </Switch>
+            <UserContextProvider>
+                <Nav />
+                <Switch>
+                    <Route path='/sign-in' component={SignIn}/>
+                    <Route path='/login' component={LogIn}/>
+                </Switch>
+            </UserContextProvider>
         </Router>
     );
 };

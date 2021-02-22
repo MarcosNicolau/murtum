@@ -1,7 +1,12 @@
 const User = require('../models/user-model');
 const passport = require('passport');
-
 const { hash } = require('bcrypt');
+
+const isUserConnected_get = (req, res) => {
+    const user = req.user;
+    if(!user) return res.status(401).send('/login');
+    res.send({ username: user.username, id: user._id });
+}
 
 const signIn_post = async (req, res) => {
     const { username, password } = req.body;
@@ -25,12 +30,16 @@ const login_post = async (req, res) => {
 
     passport.authenticate('local', (err, user, message) => {
         if(message) return res.status(400).send(message.message);
-        if(user) return req.logIn(user, () => res.send('/'));
+        if(user) return req.logIn(user, err => {
+            if(err) return console.log(err);
+            res.send('/');
+        });
     })(req, res);
 }
 
 
 module.exports = {
+    isUserConnected_get,
     signIn_post,
     login_post
 };

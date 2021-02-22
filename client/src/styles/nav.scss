@@ -11,7 +11,7 @@ nav {
         position: absolute;
         color: $tertiary-color;
         font-family: $brand-font;
-        font-size: $big-size;
+        font-size: $brand-size;
         left: 2em;
         margin: 0;
     }
@@ -46,7 +46,6 @@ nav {
         
         .auth-btn {
             @include btn($normal-size, $tertiary-color, $secondary-color);
-            border-radius: .4em;
             padding: .5em 1.8em;
             margin: 0 1em;  
             @include transition(all, 150ms);
@@ -63,7 +62,7 @@ nav {
         }
 
         .log-in-btn:hover {
-            background-color: #334358;
+            background-color: $btn-hover;
             @include transition(all, 150ms)
         }
 

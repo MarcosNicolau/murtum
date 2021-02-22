@@ -11,10 +11,34 @@
     background-color: $tertiary-color;
     @include box-shadow;
 
+    h2 {
+        position: absolute;
+        top: 1em;
+        font-size: $big-size;
+    }
+
     form {
         @include flex-center(column);
-        input {
+        width: 25%;
+        .text-inputs {
+            border: none;
+            outline: none;
+            font-size: $normal-size;
+            border-bottom: solid .2rem $primary-color;
+            padding: 1em 1em 0.5em 1em;
+            width: 100%;
             margin: 1em 0;
+        }
+
+        .submit-form-btn {
+            @include btn($normal-size, $tertiary-color, $secondary-color);
+            margin-top: 3em;
+            padding: 1em 1.8em;
+            @include transition(all, 150ms);
+            &:hover {
+                background-color: $btn-hover;
+                @include transition(all, 150ms);
+            }
         }
     }
 }

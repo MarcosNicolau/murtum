@@ -1,0 +1,19 @@
+@import 'library';
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $body-color;
+  font-family: $main-font;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+button, input[type=button] {
+  cursor: pointer;
+  border: none;
+}

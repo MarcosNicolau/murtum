@@ -1,0 +1,74 @@
+@import 'library';
+
+nav {
+    @include flex-center(row);
+    position: relative;
+    height: 5em;
+    width: 100%;
+    background-color: $primary-color;
+
+    .nav-logo {
+        position: absolute;
+        color: $tertiary-color;
+        font-family: $brand-font;
+        font-size: $big-size;
+        left: 2em;
+        margin: 0;
+    }
+
+    .search-bar-container {
+        @include flex-center(row);
+        flex-wrap: nowrap;
+        width: 30%;
+        .search-bar {
+            border: none;
+            outline: none;
+            border-bottom: solid .2em $tertiary-color;
+            font-size: $normal-size;
+            color: $tertiary-color;
+            background-color: transparent;
+            width: 100%;
+            margin-right: .5em;
+            padding: .5em;
+        }
+    }
+
+    img {
+        height: 2em;
+        cursor: pointer;
+    }
+
+    .btns {
+        @include flex-center(row);
+        position: absolute;
+        right: 2em;
+        margin: 0 2em;
+        
+        .auth-btn {
+            @include btn($normal-size, $tertiary-color, $secondary-color);
+            border-radius: .4em;
+            padding: .5em 1.8em;
+            margin: 0 1em;  
+            @include transition(all, 150ms);
+        }
+
+        .sign-in-btn {
+            background-color: white;
+            color: $secondary-color;
+            &:hover {
+                background-color: $secondary-color;
+                color: $tertiary-color;
+                @include transition(all, 150ms);
+            }
+        }
+
+        .log-in-btn:hover {
+            background-color: #334358;
+            @include transition(all, 150ms)
+        }
+
+        img {
+            margin: 0 2em;
+        }
+    }
+}

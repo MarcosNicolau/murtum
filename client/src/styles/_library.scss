@@ -1,0 +1,54 @@
+//Colors
+$primary-color: #131921;
+$secondary-color: #2A3646;
+$tertiary-color: #FFFFFF;
+$body-color: #EBEBEB;
+
+//Fonts
+$font-color: #000000;
+$main-font: 'Raleway', sans-serif;
+$brand-font: 'Noto Sans', sans-serif;
+
+$big-size: 2rem;
+$brand-size: 2rem;
+$normal-size: 1rem;
+
+//Mixings
+@mixin fullscreen {
+    height: 100vh;
+    width: 100%;
+}
+
+@mixin absolute-positioning($direction, $distance) {
+    position: absolute;
+    #{$direction}: $distance;
+}
+
+@mixin transition($elements, $duration) {
+    transition: $elements $duration ease-in-out
+}
+
+@mixin flex-center($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: $direction;
+}
+
+@mixin btn($font-size, $color, $background-color) {
+    font-family: $main-font;
+    font-weight: 600;
+    font-size: $font-size;
+    text-decoration: none;
+    color: $color;
+    background-color: $background-color;
+}
+
+@mixin box-shadow {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+//Media queries breakpoints
+$phone-tablet: 900px;
+$desktop: 1024px;

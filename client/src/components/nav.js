@@ -28,8 +28,8 @@ const Nav = () => {
                         </div>
 
                         <div className="user-dropdown-menu">
-                            <Link to='new-product'>Sell your product</Link>
-                            <Link to={`products/${user.id}`}>Your products</Link>
+                            <Link to='/new-product'>Sell your product</Link>
+                            <Link to={`/products/${user.id}`}>Your products</Link>
                             <button>Log out</button>
                         </div>
                     </div>

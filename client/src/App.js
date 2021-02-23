@@ -7,6 +7,7 @@ import {
 import Nav from './components/nav';
 import SignIn from './components/sign-in';
 import LogIn from './components/log-in';
+import NewProduct from './components/new-product';
 import { UserContextProvider } from './user-context';
 import './styles/index.scss';
 
@@ -18,6 +19,7 @@ const App = () => {
                 <Switch>
                     <Route path='/sign-in' component={SignIn}/>
                     <Route path='/login' component={LogIn}/>
+                    <Route path='/new-product' component={NewProduct}/>
                 </Switch>
             </UserContextProvider>
         </Router>

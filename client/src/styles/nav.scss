@@ -97,6 +97,7 @@ nav {
                 background-color: #2a3646d3;
                 width: 70%;
                 padding: .5em;
+                border-radius: .4rem;
                 pointer-events: none;
                 opacity: 0;
                 @include transition(opacity, 150ms);

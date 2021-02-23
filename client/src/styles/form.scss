@@ -1,33 +1,33 @@
 @import 'library';
 
-.auth-form-container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+.form-container {
+    
     @include flex-center(column);
-    height: 60%;
-    width: 50%;
+    min-height: 100vh;
+    min-width: 50%;
+    width: auto;
     background-color: $tertiary-color;
     @include box-shadow;
 
     h2 {
-        position: absolute;
-        top: 1em;
         font-size: $big-size;
     }
 
     form {
         @include flex-center(column);
-        width: 25%;
-        .text-inputs {
+        .text-inputs, textarea {
             border: none;
             outline: none;
             font-size: $small-size;
             border-bottom: solid .2rem $primary-color;
             padding: 1em 1em 0.5em 1em;
-            width: 100%;
             margin: 1em 0;
+            @include transition(all, 150ms);
+
+            &:focus {
+                border-color: #59769b;
+                @include transition(all, 150ms);
+            }
         }
 
         .submit-form-btn {
@@ -47,5 +47,9 @@
                 text-decoration: underline;
             }
         }
+    }
+
+    .error {
+        color: red;
     }
 }

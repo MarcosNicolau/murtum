@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/auth-form.scss';
+import '../styles/form.scss';
 
 const AuthForm = ({ type, formAction, redirect }) => {
     const [username, setUsername] = useState('');
@@ -19,7 +19,7 @@ const AuthForm = ({ type, formAction, redirect }) => {
     }
 
     return(
-        <div className="auth-form-container">
+        <div className="form-container">
             <h2>{type}</h2>
             <form>
                 <input type="text" placeholder='Username...' className='text-inputs' onChange={(e) => setUsername(e.target.value)}/>

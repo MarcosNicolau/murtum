@@ -1,12 +1,14 @@
 import { useUserContext } from '../user-context';
 import { Link } from 'react-router-dom';
-import UserContext from '../user-context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-regular-svg-icons'
+import arrowIcon from '../assets/arrow-icon.svg';
 import cartIcon from '../assets/cart-icon.svg';
 import searchIcon from '../assets/search-icon.svg';
 import '../styles/nav.scss';
 
 const Nav = () => {
-    const user = useUserContext(UserContext);
+    const user = useUserContext();
     
     return (
         <nav>
@@ -17,12 +19,24 @@ const Nav = () => {
             </div>
             {
                 user ? 
-                <div className='btns'>
-                    <Link to={`/user/${user.id}`}>{user.username}</Link>
-                    <img src={cartIcon} alt="cart-icon"/>
+                <div className='nav-actions nav-user-active'>
+                    <div className='user-selector'>
+                        <div className="user-info">
+                            <FontAwesomeIcon icon={faUser}/>
+                            <p className='username'>{user.username}</p>
+                           <img src={arrowIcon} alt="arrrow-dropdown" className='user-arrow'/>
+                        </div>
+
+                        <div className="user-dropdown-menu">
+                            <Link to='new-product'>Sell your product</Link>
+                            <Link to={`products/${user.id}`}>Your products</Link>
+                            <button>Log out</button>
+                        </div>
+                    </div>
+                    <img src={cartIcon} alt="cart-icon"/>                    
                 </div>
                 :
-                <div className="btns">
+                <div className="nav-actions">
                     <Link to="/sign-in" className="auth-btn sign-in-btn">sign-in</Link>
                     <Link to="/login" className="auth-btn log-in-btn">login</Link>
                     <img src={cartIcon} alt="cart-icon"/>

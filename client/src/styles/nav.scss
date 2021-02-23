@@ -24,7 +24,7 @@ nav {
             border: none;
             outline: none;
             border-bottom: solid .2em $tertiary-color;
-            font-size: $normal-size;
+            font-size: $small-size;
             color: $tertiary-color;
             background-color: transparent;
             width: 100%;
@@ -38,14 +38,15 @@ nav {
         cursor: pointer;
     }
 
-    .btns {
+    //User disconnected nav
+    .nav-actions {
         @include flex-center(row);
         position: absolute;
         right: 2em;
         margin: 0 2em;
         
         .auth-btn {
-            @include btn($normal-size, $tertiary-color, $secondary-color);
+            @include btn($small-size, $tertiary-color, $secondary-color);
             padding: .5em 1.8em;
             margin: 0 1em;  
             @include transition(all, 150ms);
@@ -67,7 +68,72 @@ nav {
         }
 
         img {
-            margin: 0 2em;
+            margin: 0 2em 0em 4em;
+            font-size: $small-size;
         }
     }
+
+    //User connected nav
+    .nav-user-active {
+        color: white;
+        cursor: default;
+        font-size: $normal-size;
+        
+        .user-selector {
+            display: inline-block;
+            justify-content: flex-start;
+            .username {
+                margin: .2em .5em;    
+            }
+
+            .user-info {
+                @include flex-center(row);
+            }
+            
+            .user-dropdown-menu {
+                @include flex-center(column);
+                align-items: flex-start;
+                position: absolute;
+                background-color: #2a3646d3;
+                width: 70%;
+                padding: .5em;
+                pointer-events: none;
+                opacity: 0;
+                @include transition(opacity, 150ms);
+
+                a, button {
+                    padding: .8em 0.5em;
+                    color: white;
+                    &:hover {
+                        font-weight: 600;
+                    }
+                }
+
+                button {
+                    @include btn($normal-size, white, transparent);
+                    font-weight: 400;
+                }
+            }
+
+            .user-arrow {
+                margin: 0em .2em;
+                height: 1.2em;
+                @include transition(transform, 250ms)
+            }
+
+            &:hover {
+                .user-arrow {
+                    transform: rotate(180deg);
+                    @include transition(transform, 250ms);
+                }
+
+                .user-dropdown-menu {
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+        }
+
+    }
 }
+

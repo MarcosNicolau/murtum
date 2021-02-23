@@ -3,9 +3,8 @@ import axios from 'axios';
 
 const UserContext = React.createContext();
 
-export const useUserContext = () => {
-    return useContext(UserContext);
-}
+export const useUserContext = () => useContext(UserContext);
+
 
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(undefined);

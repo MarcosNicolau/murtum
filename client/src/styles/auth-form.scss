@@ -23,7 +23,7 @@
         .text-inputs {
             border: none;
             outline: none;
-            font-size: $normal-size;
+            font-size: $small-size;
             border-bottom: solid .2rem $primary-color;
             padding: 1em 1em 0.5em 1em;
             width: 100%;
@@ -31,13 +31,20 @@
         }
 
         .submit-form-btn {
-            @include btn($normal-size, $tertiary-color, $secondary-color);
-            margin-top: 3em;
+            @include btn($small-size, $tertiary-color, $secondary-color);
+            margin: 3em 0;
             padding: 1em 1.8em;
             @include transition(all, 150ms);
             &:hover {
                 background-color: $btn-hover;
                 @include transition(all, 150ms);
+            }
+        }
+
+        .already {
+            color: blue;
+            &:hover {
+                text-decoration: underline;
             }
         }
     }

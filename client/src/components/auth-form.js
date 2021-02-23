@@ -25,7 +25,7 @@ const AuthForm = ({ type, formAction, redirect }) => {
                 <input type="text" placeholder='Username...' className='text-inputs' onChange={(e) => setUsername(e.target.value)}/>
                 <input type="password" placeholder='Password...' className='text-inputs' onChange={(e) => setPassword(e.target.value)}/>
                 <input type="button" className='submit-form-btn' value={type} onClick={handleForm}/>
-                <Link to={redirect}>{`Already ${type}?`}</Link>
+                <Link className='already' to={redirect}>{`Already ${type}?`}</Link>
             </form>
         </div>
     );

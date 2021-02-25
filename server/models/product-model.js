@@ -21,7 +21,8 @@ const productSchema = new Schema({
     images: {
         required: true,
         type: Array
-    }
+    },
+    questions: Array
 }, { timestamps: true });
 
 const Product = mongoose.model('Product', productSchema);

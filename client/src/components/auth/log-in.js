@@ -1,5 +1,5 @@
 import AuthForm from './auth-form';
-import { useUserContext } from '../user-context';
+import { useUserContext } from '../../user-context';
 
 const LogIn = () => {
     const user = useUserContext();

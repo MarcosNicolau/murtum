@@ -1,0 +1,15 @@
+@import '../library';
+
+.description-container {
+    border-top: solid .12em rgb(211, 211, 211);
+    width: 100%;
+    h2 {
+        font-size: $medium-big-size;
+        font-weight: 400;
+    }
+
+    .description {
+        color: rgb(128, 128, 128);
+        font-size: $normal-size;
+    }
+}

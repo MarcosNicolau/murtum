@@ -18,7 +18,7 @@ const SearchItem = ({ search }) => {
     useEffect(() => getItems(), []);
 
     if(!items) return <h1>Loading...</h1>
-    if(!items.length) return <h1>No products were found</h1>
+    if(!items.length) return <h1 className='negative-search'>No products were found</h1>
     
     return (
         <div className="search-result-container">

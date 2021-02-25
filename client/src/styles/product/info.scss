@@ -1,0 +1,89 @@
+@import '../library';
+
+.product-container {
+    @include flex-center(column);
+    justify-content: unset;
+    min-height: 100vh;
+    width: 60%;
+    margin: 5em auto;
+    padding: 0 5em;
+    background-color: $tertiary-color;
+}
+
+.product-info {
+    @include flex-center(row);
+    font-family: 'Roboto', sans-serif;
+    flex-wrap: nowrap;
+    justify-content: unset;
+    align-items: unset;
+    width: 100%;
+    margin: 5em 0;
+    .imgs-selector {
+        @include flex-center(column);
+        height: 25em;
+        justify-content: unset;
+        padding-right: 2em;
+        border-right: solid .15em rgb(211, 211, 211);
+        img {
+            margin: 1em 0;
+            height: 3em;
+            cursor: pointer;
+        }
+    }
+
+    .active-img-container {
+        @include flex-center(row);
+        height: 21em;
+        width: 25em;
+        padding: 2em;
+        border-bottom: solid .15em rgb(211, 211, 211);
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .product-name-price-actions-container {
+        @include flex-center(column);
+        justify-content: unset;
+        margin: 2em 0em 0 4em;
+        .name {
+            margin: .2em 0em;
+            color: $primary-color;
+            font-size: $big-size - .8rem;
+            font-weight: 500;
+        }
+        .price {
+            font-family: 'Roboto', sans-serif;
+            margin: .2em 0em;
+            font-size: $big-size - .2rem;
+            font-weight: 500;
+        }   
+
+        .action-btns {
+            @include flex-center(column);
+
+            button {
+                @include btn(1.1rem, $tertiary-color, $secondary-color);
+                margin: .5em 0;
+                font-weight: 400;
+                padding: .8em 1.6em;
+                width: 100%;
+                border: solid .15em $secondary-color;
+                @include transition(all, 150ms);
+            }
+
+            .buy-now-btn:hover {
+                background-color: $btn-hover;
+                border-color: $btn-hover;
+                @include transition(all, 150ms);
+            }
+
+            .add-to-cart-btn {
+                background-color: white;
+                color: $secondary-color;
+                border: solid .15em $secondary-color;
+            }
+        }
+    }
+}

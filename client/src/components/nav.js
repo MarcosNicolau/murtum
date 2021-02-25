@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useUserContext } from '../user-context';
 import { Link } from 'react-router-dom';
+import { useUserContext } from '../user-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import arrowIcon from '../assets/arrow-icon.svg';
@@ -17,7 +17,7 @@ const Nav = () => {
             <a href="/" className='nav-logo'>murtum</a>
             <div className="search-bar-container">
                 <input type="search" className='search-bar' onChange={(e) => setSearch(e.target.value)}/>
-                <Link to={`/products?search=${search}`}><img src={searchIcon} alt="search-icon"/></Link>
+                <Link onClick={() => window.location.href = `/products?search=${search}`}><img src={searchIcon} alt="search-icon"/></Link>
             </div>
             {
                 user ? 
@@ -35,13 +35,13 @@ const Nav = () => {
                             <button>Log out</button>
                         </div>
                     </div>
-                    <img src={cartIcon} alt="cart-icon"/>                    
+                    <Link to='/cart'><img src={cartIcon} alt="cart-icon"/></Link>                  
                 </div>
                 :
                 <div className="nav-actions">
                     <Link to="/sign-in" className="auth-btn sign-in-btn">sign-in</Link>
                     <Link to="/login" className="auth-btn log-in-btn">login</Link>
-                    <img src={cartIcon} alt="cart-icon"/>
+                    <Link to='/cart' ><img src={cartIcon} alt="cart-icon"/></Link>                  
                 </div>
             }
         </nav>

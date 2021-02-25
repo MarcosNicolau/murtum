@@ -35,7 +35,7 @@ const NewProduct = () => {
                 <input type="number" placeholder='Product price...' className='text-inputs' 
                     onChange={e => dispatch({type: PRODUCT_ACTIONS.SET_PRICE, payload: e.target.value})}
                 />
-                <textarea className='description' placeholder='Product description' 
+                <textarea className='description' placeholder='Product description...' 
                     onChange={e => dispatch({type: PRODUCT_ACTIONS.SET_DESCRIPTION, payload: e.target.value})}>
                 </textarea>
                 <div className='product-category'>

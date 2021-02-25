@@ -1,0 +1,55 @@
+@import 'library';
+
+.search-container {
+    @include flex-center(column);
+    justify-content: unset;
+    min-height: 100vh;
+    margin-bottom: 5em;
+    width: 100%;
+
+    h2 {
+        font-size: $big-size
+    }
+}
+
+.search-result-container {
+    @include flex-center(column);
+    justify-content: unset;
+    background-color: white;
+    min-height: 100vh;
+    width: 60%;
+
+    .search {  
+        @include flex-center(row);
+        justify-content: unset;
+        width: 100%;
+        padding: 2em 0;
+        border-bottom: solid .15em rgb(211, 211, 211);
+
+        .item-name {
+            margin: .2em 0em;
+            color: $primary-color;
+            font-size: $medium-big-size;
+            &:hover {
+                text-decoration: underline;
+                color: $btn-hover-2;
+            }
+        }
+
+        .item-price {
+            margin: .2em 0em;
+            font-size: $big-size - .2rem;
+            font-weight: 500;
+        }
+
+        .img-container {
+            @include flex-center(row);
+            margin: 0em 3em;
+            width: 15em;
+        }
+
+        img {
+            height: 8em;
+        }
+    }
+}

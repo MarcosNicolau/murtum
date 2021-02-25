@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useUserContext } from '../user-context';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,13 +10,14 @@ import '../styles/nav.scss';
 
 const Nav = () => {
     const user = useUserContext();
+    const [search, setSearch] = useState('');
     
     return (
         <nav>
             <a href="/" className='nav-logo'>murtum</a>
             <div className="search-bar-container">
-                <input type="search" className='search-bar'/>
-                <img src={searchIcon} alt=""/>
+                <input type="search" className='search-bar' onChange={(e) => setSearch(e.target.value)}/>
+                <Link to={`/products?search=${search}`}><img src={searchIcon} alt="search-icon"/></Link>
             </div>
             {
                 user ? 

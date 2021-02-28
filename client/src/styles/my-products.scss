@@ -1,0 +1,41 @@
+@import 'library';
+
+.products-container {
+    @include grid-layout;
+}
+
+.product {
+    @include flex-center(column);
+    padding: 1.2em .5em;
+    text-align: center;
+    background-color: $tertiary-color;
+    font-family: 'Roboto', sans-serif;
+    @include box-shadow;
+
+    & > * {
+        margin: 1em 0;
+    }
+
+    .name {
+        text-decoration: none;
+        font-size: $normal-size + .2rem;
+        color: $primary-color;
+
+        &:hover {
+            text-decoration: underline;
+            color: $btn-hover;
+        }
+    }
+
+    .unanswered-questions {
+        color: 	#ffcc00;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    img {
+        max-height: 17em;
+        max-width: 22em;
+    }
+}

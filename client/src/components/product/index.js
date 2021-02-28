@@ -1,32 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useUserContext } from '../../user-context';
+import getProduct from '../../utils/get-single-product';
 import Info from './info';
+import BuyBtns from './buy-btns';
 import Description from './description';
 import Questions from './questions';
+import axios from 'axios';
 
 const Product = () => {
-    const [product, setProduct] = useState('loading');
+    const user = useUserContext();
     const { id } = useParams();
-    const getProduct = async () => {
-        try {
-            const res = await axios.get(`/products/${id}`);
-            setProduct(res.data);
-        }
-        catch(err) {
-            if(err.response.status === 404) return setProduct(err.response.data)
-        }
-    }
-    useEffect(() => getProduct(), []);
+    const [product, setProduct] = useState('loading');
+
+    useEffect(() => getProduct(axios.get(`/products/${id}`), setProduct), []);
 
     if(product === 'loading') return <h1>Loading...</h1>
     if(!product) return <h1>Product not found</h1>
 
     return (
         <div className="product-container">
-            <Info images={product.images} name={product.name} price={product.price}/>
+            <Info images={product.images} name={product.name} price={product.price} user={user} productId={id}>
+                <BuyBtns productId={id} user={user}/>
+            </Info>
             <Description description={product.description} />
-            <Questions productQuestions={product.questions} id={id}/>
+            <Questions productQuestions={product.questions} productId={id} user={user}/>
         </div>
     );
 }

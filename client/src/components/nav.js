@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../user-context';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import arrowIcon from '../assets/arrow-icon.svg';
 import cartIcon from '../assets/cart-icon.svg';
 import searchIcon from '../assets/search-icon.svg';
@@ -17,7 +17,7 @@ const Nav = () => {
             <a href="/" className='nav-logo'>murtum</a>
             <div className="search-bar-container">
                 <input type="search" className='search-bar' onChange={(e) => setSearch(e.target.value)}/>
-                <Link onClick={() => window.location.href = `/products?search=${search}`}><img src={searchIcon} alt="search-icon"/></Link>
+                <img src={searchIcon} alt="search-icon" onClick={() => window.location.href = `/products?search=${search}`} />
             </div>
             {
                 user ? 
@@ -31,7 +31,7 @@ const Nav = () => {
 
                         <div className="user-dropdown-menu">
                             <Link to='/new-product'>Sell your product</Link>
-                            <Link to={`/products/${user.id}`}>Your products</Link>
+                            <Link to={`/my-products`}>Your products</Link>
                             <button>Log out</button>
                         </div>
                     </div>

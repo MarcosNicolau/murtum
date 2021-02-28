@@ -11,6 +11,8 @@ import LogIn from './components/auth/log-in';
 import NewProduct from './components/new-product/index';
 import SearchResult from './components/search-result';
 import Product from './components/product/';
+import MyProducts from './components/my-products';
+import ChangeMyProducts from './components/change-my-products/'
 import Cart from './components/cart';
 import { UserContextProvider } from './user-context';
 import './styles/index.scss';
@@ -25,6 +27,8 @@ const App = () => {
                     <Route path='/sign-in' component={SignIn}/>
                     <Route path='/login' component={LogIn}/>
                     <Route path='/new-product' component={NewProduct}/>
+                    <Route path='/my-products/edit/:id' component={ChangeMyProducts}/>
+                    <Route path='/my-products' component={MyProducts}/>
                     <Route path='/products/:id' component={Product} />
                     <Route path='/products' component={SearchResult}/>
                     <Route path='/cart' component={Cart} />

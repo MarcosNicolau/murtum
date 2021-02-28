@@ -6,7 +6,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const passportLocalStrategy = require('./config/passport-config');
 const authRoutes = require('./routes/auth-routes');
+const userRoutes = require('./routes/user-routes');
 const productsRoutes = require('./routes/products-routes');
+const paymentRoutes = require('./routes/payment-routes');
 require('dotenv').config();
 
 const PORT = process.env.PORT || '8080';
@@ -27,9 +29,11 @@ passportLocalStrategy(passport);
 
 
 mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
-    .then(() => app.listen(PORT), console.log(`server listening on ${PORT}`))
-    .catch((err) => console.log(err));
+.then(() => app.listen(PORT), console.log(`server listening on ${PORT}`))
+.catch((err) => console.log(err));
 
 
+app.use('/user', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/products', productsRoutes);
+app.use('/payment', paymentRoutes);

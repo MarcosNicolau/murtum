@@ -9,6 +9,7 @@ $btn-hover-2: #59769b;
 //Fonts
 $font-color: #000000;
 $main-font: 'Raleway', sans-serif;
+$secondary-font: 'Roboto', sans-serif;
 $brand-font: 'Noto Sans', sans-serif;
 
 $big-size: 2.5rem;
@@ -38,6 +39,15 @@ $small-size: 1rem;
     align-items: center;
     flex-wrap: wrap;
     flex-direction: $direction;
+}
+
+@mixin grid-layout{
+    margin: 3em 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30em);
+    justify-content: center;
+    align-content: center;
+    grid-gap: 3em;   
 }
 
 @mixin btn($font-size, $color, $background-color) {

@@ -7,7 +7,7 @@ import '../../styles/new-product.scss';
 
 const NewProduct = () => {
     const user = useUserContext();
-    if(user === false) window.location.href = '/login';
+    if(!user) window.location.href = '/login';
     const [state, dispatch] = useReducer(productReducer, productState);
     const [images, setImages] = useState([]);
     const [error, setError] = useState('');

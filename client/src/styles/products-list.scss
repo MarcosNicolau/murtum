@@ -1,35 +1,30 @@
 @import 'library';
 
-.search-container {
-    @include flex-center(column);
-    justify-content: unset;
-    min-height: 100vh;
-    margin-bottom: 5em;
-    width: 100%;
-
-    h2 {
-        font-size: $big-size
-    }
+.query {
+    font-size: $big-size;
+    text-align: center
 }
 
-.search-result-container {
+.list-container {
     @include flex-center(column);
     justify-content: unset;
     background-color: white;
     min-height: 100vh;
+    margin: 3em auto 5em;
     width: 60%;
 
-    .search {  
+    .result {  
         @include flex-center(row);
+        position: relative;
         flex-wrap: nowrap;
         justify-content: unset;
-        width: 100%;
+        width: 90%;
         padding: 2em 0;
         border-bottom: solid .15em rgb(211, 211, 211);
-        font-family: 'Roboto', sans-serif;
+        font-family: $secondary-font;   
 
 
-        .item-name {
+        .product-name {
             margin: .2em 0em;
             color: $primary-color;
             font-size: $normal-size + .5rem;
@@ -40,7 +35,7 @@
             }
         }
 
-        .item-price {
+        .product-price {
             margin: .2em 0em;
             font-size: $big-size - .5rem;
             font-weight: 400;
@@ -48,13 +43,13 @@
 
         .img-container {
             @include flex-center(row);
-            margin: 0em 3em;
-            width: 15em;
+            margin: 0 1em;
+            width: 12em;
+            img {
+                height: 6em;
+            }
         }
 
-        img {
-            height: 8em;
-        }
     }
 }
 
@@ -63,4 +58,9 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.dlt-product {
+    position: absolute;
+    right: 2em;
 }

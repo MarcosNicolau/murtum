@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import ProductsList from "../product-list";
 
 const SearchItem = ({ search }) => {
-    const [items, setItems] = useState(false);
+    const [products, setProducts] = useState(false);
 
     const getItems = async () => {
         try{
             const res = await axios.get(`/products?search=${search}`);
-            console.log(res);
-            setItems(res.data);
+            setProducts(res.data);
         }
         catch(err){
             console.log(err);
@@ -17,25 +16,11 @@ const SearchItem = ({ search }) => {
     }
     useEffect(() => getItems(), []);
 
-    if(!items) return <h1>Loading...</h1>
-    if(!items.length) return <h1 className='negative-search'>No products were found</h1>
+    if(!products) return <h1>Loading...</h1>
+    if(!products.length) return <h1 className='negative-search'>No products were found</h1>
     
     return (
-        <div className="search-result-container">
-            {items.map(item => {
-                return (
-                    <div className="search" key={item.id}>
-                        <div className='img-container'>
-                            <img src={item.images[0]} alt=""/>
-                        </div>
-                        <div>
-                            <Link to={`/products/${item.id}`} className='item-name'>{item.name}</Link>
-                            <h2 className='item-price'>${item.price}</h2>
-                        </div>
-                    </div>
-                );
-            })}
-        </div>
+        <ProductsList products={products}/>
     );
 }
 

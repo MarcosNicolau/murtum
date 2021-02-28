@@ -12,7 +12,7 @@
 
 .product-info {
     @include flex-center(row);
-    font-family: 'Roboto', sans-serif;
+    font-family: $secondary-font;
     flex-wrap: nowrap;
     justify-content: unset;
     align-items: unset;
@@ -54,7 +54,7 @@
             font-weight: 500;
         }
         .price {
-            font-family: 'Roboto', sans-serif;
+            font-family: $secondary-font;
             margin: .2em 0em;
             font-size: $big-size - .2rem;
             font-weight: 500;
@@ -80,9 +80,18 @@
             }
 
             .add-to-cart-btn {
+               
+                border: solid .15em $secondary-color;
+            }
+
+            .in-cart {
+                background-color: $secondary-color;
+                color: $tertiary-color;
+            }
+
+            .add-to-cart {
                 background-color: white;
                 color: $secondary-color;
-                border: solid .15em $secondary-color;
             }
         }
     }

@@ -7,7 +7,7 @@ export const useUserContext = () => useContext(UserContext);
 
 
 export const UserContextProvider = ({ children }) => {
-    const [user, setUser] = useState(undefined);
+    const [user, setUser] = useState('loading');
 
     const getUser = async () => {
         try{

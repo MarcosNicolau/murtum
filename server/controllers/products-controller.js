@@ -19,7 +19,7 @@ const searchResult_get = async (req, res) => {
     const setProps = searchResults.map(result => {
         return {
             id: result._id,
-            images: result.images,
+            image: result.images[0],
             name: result.name,
             price: result.price,
         }
@@ -39,9 +39,9 @@ const product_get = async (req, res) => {
 }
 
 const sendQuestion_post = async (req, res) => {
-    const { question, id } = req.body;
+    const { question, productId } = req.body;
     if(!question) return res.status(400).send('You must write something');
-    const product = await Product.findById(id);
+    const product = await Product.findById(productId);
     product.questions.push({ question, answer: '', createdAt: Date.now() });
     await product.save();
     
@@ -56,7 +56,7 @@ const newProduct_post = async (req, res) => {
     const newProduct = new Product({
         name,
         description,
-        price,
+        price: Number(price),
         category,
         images
     });

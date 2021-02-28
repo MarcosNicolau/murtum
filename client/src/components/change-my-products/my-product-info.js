@@ -1,10 +1,7 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import '../../styles/product/info.scss';
+import { useState } from "react";
 
-const ProductInfo = ({ images, name, price, user, productId, children }) => {
+const MyProductInfo = ({ images, name, price }) => {
     const [activeImg, setActiveImg] = useState(images[0]);
-
     return (
         <div className="product-info">
             <div className="imgs-selector">
@@ -18,10 +15,9 @@ const ProductInfo = ({ images, name, price, user, productId, children }) => {
                     <h3 className="name">{name}</h3>
                     <h2 className="price">${price}</h2>
                 </div>
-                { children }
             </div>
         </div>
     );
 }
 
-export default ProductInfo;
+export default MyProductInfo;

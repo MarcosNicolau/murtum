@@ -10,7 +10,7 @@
     justify-content: unset;
     background-color: white;
     min-height: 100vh;
-    margin: 3em auto 5em;
+    margin: 3em auto 0em;
     width: 60%;
 
     .result {  
@@ -27,8 +27,7 @@
         .product-name {
             margin: .2em 0em;
             color: $primary-color;
-            font-size: $normal-size + .5rem;
-            word-break: break-all;
+            font-size: $normal-size + .3rem;
             &:hover {
                 text-decoration: underline;
                 color: $btn-hover-2;
@@ -43,7 +42,7 @@
 
         .img-container {
             @include flex-center(row);
-            margin: 0 1em;
+            margin: 1em;
             width: 12em;
             img {
                 height: 6em;
@@ -63,4 +62,21 @@
 .dlt-product {
     position: absolute;
     right: 2em;
+}
+
+@media(max-width: 1300px) {
+    .list-container {
+        width: 100%;
+
+        .result {
+            .product-name {
+                font-size: 1.4rem;
+            }
+
+            .product-price {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
 }

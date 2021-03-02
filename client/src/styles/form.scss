@@ -5,7 +5,7 @@
     @include flex-center(column);
     min-height: 100vh;
     min-width: 50%;
-    width: auto;
+    max-width: 100%;
     background-color: $tertiary-color;
     @include box-shadow;
 
@@ -15,6 +15,7 @@
 
     form {
         @include flex-center(column);
+        width: 100%;
         .text-inputs, textarea {
             border: none;
             outline: none;
@@ -22,6 +23,7 @@
             border-bottom: solid .2rem $primary-color;
             padding: 1em 1em 0.5em 1em;
             margin: 1em 0;
+            max-width: 85%;
             @include transition(all, 150ms);
 
             &:focus {
@@ -32,7 +34,7 @@
 
         .submit-form-btn {
             @include btn($small-size, $tertiary-color, $secondary-color);
-            margin: 3em 0;
+            margin: 2em 0;
             padding: 1em 1.8em;
             @include transition(all, 150ms);
             &:hover {
@@ -49,7 +51,15 @@
         }
     }
 
-    .error {
+    .form-error {
         color: red;
+    }
+}
+
+@media(max-width: 650px) {
+    .form-container {
+        h2 {
+            font-size: 2rem;
+        }
     }
 }

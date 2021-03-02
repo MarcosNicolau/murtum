@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const passportLocalStrategy = require('./config/passport-config');
 const authRoutes = require('./routes/auth-routes');
-const userRoutes = require('./routes/user-routes');
+const userRoutes = require('./routes/my-products-routes');
+const cartRoutes = require('./routes/cart-routes');
 const productsRoutes = require('./routes/products-routes');
 const paymentRoutes = require('./routes/payment-routes');
 require('dotenv').config();
@@ -19,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
-    secret: 'keyboard cat',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: false,
 }));
@@ -33,7 +34,8 @@ mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
 .catch((err) => console.log(err));
 
 
-app.use('/user', userRoutes);
+app.use('/my-products', userRoutes);
+app.use('/cart', cartRoutes);
 app.use('/auth', authRoutes);
 app.use('/products', productsRoutes);
 app.use('/payment', paymentRoutes);

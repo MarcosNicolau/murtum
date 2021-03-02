@@ -2,6 +2,7 @@ const router = require('express').Router();
 const productsController = require('../controllers/products-controller');
 const authentication = require('../middlewares/authentication');
 const isOwn = require('../middlewares/isOwn');
+const getProduct = require('../utils/getProduct');
 
 router.get('/sections', productsController.sections_get);
 router.get('/:id', productsController.product_get); 

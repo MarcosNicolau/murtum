@@ -1,7 +1,10 @@
 import { useState, useReducer } from 'react';
 import productReducer, { productState, PRODUCT_ACTIONS } from './new-product-reducer';
 import { useUserContext } from '../../user-context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import NewProductImgs from './new-product-image';
+import Loader from '../loader';
 import axios from 'axios';
 import '../../styles/new-product.scss';
 
@@ -11,17 +14,21 @@ const NewProduct = () => {
     const [state, dispatch] = useReducer(productReducer, productState);
     const [images, setImages] = useState([]);
     const [error, setError] = useState('');
+    const [isSending, setIsSending] = useState(false);
 
     const handleForm = async () => {
         const { name, description, price, category } = state;
         if(!name || !description || !price || !category || !images.length ) return setError('Complete all the fields');
-
         try{
+            setIsSending(true);
             const res = await axios.post('/products/new-product', { name, images, description, price, category, id: user.id });
+            setIsSending(false);
             window.location.href = res.data;
         }
         catch(err) {
-            if(err.reponse.status === '401') return window.location.href = err.response.data;
+            const error = err.response;
+            if(error.status === '401') return window.location.href = error.data;
+            if(error.status === '400') return setError(error.date)
         }
     }
 
@@ -50,8 +57,8 @@ const NewProduct = () => {
                     </div>
                 </div>
                 <NewProductImgs images={images} setImages={setImages} setError={setError} />
-                <input type="button" className='submit-form-btn' value='SELL' onClick={handleForm}/>
-                {error && <p className='error'>{error}</p>}
+                {isSending ? <Loader relative={'true'}/> : <input type="button" className='submit-form-btn' value='SELL' onClick={handleForm}/>}
+                {error && <p className='form-error'><FontAwesomeIcon icon={faExclamation}/> {error}</p>}
             </form>
         </div>
     );

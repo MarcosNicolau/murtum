@@ -6,25 +6,31 @@ import Info from './info';
 import BuyBtns from './buy-btns';
 import Description from './description';
 import Questions from './questions';
+import Loader from '../loader';
 import axios from 'axios';
 
 const Product = () => {
     const user = useUserContext();
     const { id } = useParams();
     const [product, setProduct] = useState('loading');
+    const [isOwn, setIsOwn] = useState(undefined);
 
     useEffect(() => getProduct(axios.get(`/products/${id}`), setProduct), []);
+    useEffect(() => {
+        if(product.owner === user.id) return setIsOwn(true);
+        setIsOwn(false);
+    }, [product])
 
-    if(product === 'loading') return <h1>Loading...</h1>
-    if(!product) return <h1>Product not found</h1>
+    if(product === 'loading') return <Loader />;
+    if(!product) return <h1>Product not found</h1>;
 
     return (
         <div className="product-container">
             <Info images={product.images} name={product.name} price={product.price} user={user} productId={id}>
-                <BuyBtns productId={id} user={user}/>
+                <BuyBtns productId={id} user={user} isOwn={isOwn}/>
             </Info>
             <Description description={product.description} />
-            <Questions productQuestions={product.questions} productId={id} user={user}/>
+            <Questions productQuestions={product.questions} productId={id} user={user} isOwn={isOwn}/>
         </div>
     );
 }

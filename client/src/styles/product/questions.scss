@@ -1,5 +1,34 @@
 @import '../library';
 
+@mixin input {
+    outline: none;
+    font-size: $small-size;
+    padding: 1em 1em 0.5em 1em;
+    resize: none;
+    width: 50%;
+    height: 2em;
+    border: solid .1rem $primary-color;
+    font-family: $main-font;
+    @include transition(all, 150ms);
+    
+    &:focus {
+        border-color: #59769b;
+        @include transition(all, 150ms);
+    }
+}
+
+@mixin send-btn {
+    @include btn(1.1rem, $tertiary-color, $btn-hover-2);
+    margin: 0 0.5em;
+    font-weight: 400;
+    padding: .8em 1.6em;
+    @include transition(all, 150ms);
+    &:hover {
+        background-color: #6b8db9;
+        @include transition(all, 150ms);
+    }
+}
+
 .questions-answers-container {
     @include flex-center(column);
     gap: 1.5em;
@@ -15,32 +44,11 @@
         @include flex-center(row);
         width: 100%;
         textarea {
-            outline: none;
-            font-size: $small-size;
-            padding: 1em 1em 0.5em 1em;
-            resize: none;
-            width: 50%;
-            height: 2em;
-            border: solid .1rem $primary-color;
-            font-family: $main-font;
-            @include transition(all, 150ms);
-            
-            &:focus {
-                border-color: #59769b;
-                @include transition(all, 150ms);
-            }
+            @include input;
         }
 
         .ask-btn {
-            @include btn(1.1rem, $tertiary-color, $btn-hover-2);
-            margin: 0 0.5em;
-            font-weight: 400;
-            padding: .8em 1.6em;
-            @include transition(all, 150ms);
-            &:hover {
-                background-color: #6b8db9;
-                @include transition(all, 150ms);
-            }
+            @include send-btn;
         }
     }
 
@@ -54,8 +62,6 @@
             margin: .5em 0;
             padding: 1em 2em;
             font-size: 1.15rem;
-            word-break: break-all;
-
             .answer {
                 padding-left: 1em;
                 color: gray;
@@ -63,4 +69,18 @@
         }
     }
 
+}
+
+//Answer input
+.send-answer {
+    @include flex-center(row);
+        width: 100%;
+        justify-content: unset;
+    textarea {
+        @include input;
+    }
+
+    .ask-btn {
+        @include send-btn;
+    }
 }

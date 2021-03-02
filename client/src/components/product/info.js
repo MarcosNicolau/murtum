@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../../styles/product/info.scss';
+import '../../styles/product/product-responsive.scss';
 
-const ProductInfo = ({ images, name, price, user, productId, children }) => {
+const ProductInfo = ({ images, name, price, children }) => {
     const [activeImg, setActiveImg] = useState(images[0]);
 
     return (

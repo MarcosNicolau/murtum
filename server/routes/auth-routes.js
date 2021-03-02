@@ -6,5 +6,5 @@ const authentication = require('../middlewares/authentication');
 router.get('/is-user-connected', authController.isUserConnected_get);
 router.post('/sign-in', authController.signIn_post);
 router.post('/login', authController.login_post);
-
+router.post('/logout', authController.logOut_get);
 module.exports = router;

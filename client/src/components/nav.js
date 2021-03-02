@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../user-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,14 +7,31 @@ import arrowIcon from '../assets/arrow-icon.svg';
 import cartIcon from '../assets/cart-icon.svg';
 import searchIcon from '../assets/search-icon.svg';
 import '../styles/nav.scss';
+import axios from 'axios';
 
 const Nav = () => {
     const user = useUserContext();
     const [search, setSearch] = useState('');
+    const [screenWidth, setScreenWidth] = useState(undefined);
+
+    const handleLogOut = async () => {
+        const res = await axios.post('/auth/logout');
+        window.location.href = res.data;
+    }
+    const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
+    if(user === 'loading') return null;
     
     return (
         <nav>
-            <a href="/" className='nav-logo'>murtum</a>
+            <a href="/" className='nav-logo'>{screenWidth <= 890 ? 'm' : 'murtum'}</a>
             <div className="search-bar-container">
                 <input type="search" className='search-bar' onChange={(e) => setSearch(e.target.value)}/>
                 <img src={searchIcon} alt="search-icon" onClick={() => window.location.href = `/products?search=${search}`} />
@@ -32,7 +49,7 @@ const Nav = () => {
                         <div className="user-dropdown-menu">
                             <Link to='/new-product'>Sell your product</Link>
                             <Link to={`/my-products`}>Your products</Link>
-                            <button>Log out</button>
+                            <button onClick={handleLogOut}>Log out</button>
                         </div>
                     </div>
                     <Link to='/cart'><img src={cartIcon} alt="cart-icon"/></Link>                  

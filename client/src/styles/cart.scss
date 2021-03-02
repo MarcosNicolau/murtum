@@ -59,3 +59,27 @@
         }
     }
 }
+
+.cart-empty {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1300px) {
+    .list-container {
+        .result {
+            flex-direction: column;
+            .delete-product {
+                position: absolute;
+                top: .5em;
+                right: .5em;
+            }
+        }
+    }
+
+    .buy-products-container {
+        width: 90%;
+    }
+}

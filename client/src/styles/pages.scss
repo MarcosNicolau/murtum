@@ -1,0 +1,30 @@
+@import 'library';
+
+.pages {
+    margin: 2em;
+    @include flex-center(row);
+
+    .page {
+        margin: 0 .5em;
+
+        button {
+            background-color:transparent;
+            padding: .5rem .8rem;
+            color: black;
+            font-size: 1rem;
+            @include transition(all, 150ms);
+
+            &:hover {
+                background-color: rgb(214, 214, 214);
+                font-weight: 700;
+                @include transition(all, 150ms);
+            }
+        }
+
+        .active-page {
+            background-color: rgb(214, 214, 214);
+            font-weight: 700;
+        }
+
+    }
+}

@@ -3,7 +3,8 @@
 nav {
     @include flex-center(row);
     position: relative;
-    height: 5em;
+    min-height: 5em;
+    padding: .5em 0;
     width: 100%;
     background-color: $primary-color;
 
@@ -43,7 +44,6 @@ nav {
         @include flex-center(row);
         position: absolute;
         right: 2em;
-        margin: 0 2em;
         
         .auth-btn {
             @include btn($small-size, $tertiary-color, $secondary-color);
@@ -68,7 +68,7 @@ nav {
         }
 
         img {
-            margin: 0 2em 0em 4em;
+            margin: 0 2em;
             font-size: $small-size;
         }
     }
@@ -88,14 +88,16 @@ nav {
 
             .user-info {
                 @include flex-center(row);
+                margin: 0 1em;
             }
             
             .user-dropdown-menu {
                 @include flex-center(column);
+                z-index: 10;
                 align-items: flex-start;
                 position: absolute;
                 background-color: #2a3646d3;
-                width: 70%;
+                width: 80%;
                 padding: .5em;
                 border-radius: .4rem;
                 pointer-events: none;
@@ -138,3 +140,40 @@ nav {
     }
 }
 
+@media (max-width: 889px) {
+    nav {
+        flex-direction: column;
+        .nav-logo {
+            position: relative;
+            left: 0em;
+        }
+
+        .search-bar-container {
+            width: 60%;
+            margin-bottom: 1em;
+        }
+    
+        //User disconnected nav
+        .nav-actions {
+            margin: 0em;
+            position: relative;
+            right: 0em;
+            flex-wrap: nowrap;
+    
+            img {
+                margin: 0em;
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    nav {
+        .nav-actions {
+            right: 1em;
+            img {
+                margin: 0;
+            }
+        }
+    }
+}

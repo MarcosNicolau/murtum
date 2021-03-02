@@ -5,10 +5,10 @@ import '../../styles/products-list.scss';
 import '../../styles/cart.scss';
 import axios from 'axios';
 
-const CartProductsList = ({ products, id, getCart }) => {
-
+const CartProductsList = ({ products, id, getCart, setCart }) => {
     const deleteProduct = async (productId) => { 
-        const res = await axios.post('/user/cart/delete-cart', { id, productId });
+        setCart('loading');
+        await axios.post('/cart/delete-cart', { id, productId });
         getCart();
     }
 

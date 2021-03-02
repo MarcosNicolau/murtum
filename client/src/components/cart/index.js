@@ -1,29 +1,34 @@
 import { useUserContext } from '../../user-context';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Loader from '../loader';
 import CartItems from './cart-items';
 
 const Cart = () => {
     const user = useUserContext();
     const [cart, setCart] = useState('loading');
-    if(user === 'loading') return <h1>Loading...</h1>
-    if(!user) return window.location.href = '/login';
     
     const getCart = async () => {
         try{
-            const res = await axios.post(`/user/cart`, { id: user.id });
+            setCart('loading')
+            const res = await axios.post(`/cart`, { id: user.id });
             setCart(res.data);
         }
         catch(err){
             console.log(err);
         }
     }
-    getCart();
-    if(cart === 'loading') return <h1>Loading...</h1>
-    if(!cart.length) return <h1>Your cart is empty</h1> 
+    
+    useEffect(() => getCart(), [user]);
+    
+    if(user === 'loading') return <Loader />
+    if(!user) return window.location.href = '/login';
+    
+    if(cart === 'loading') return <Loader />
+    if(!cart.length) return <h1 className='cart-empty'>Your cart is empty</h1> 
 
     return (
-        <CartItems products={cart} id={user.id} getCart={getCart}/>
+        <CartItems products={cart} id={user.id} getCart={getCart} setCart={setCart}/>
     );
 }
 

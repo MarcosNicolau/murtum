@@ -1,0 +1,59 @@
+@media (max-width: 1200px) {    
+    .product-container {
+        width: 100%;
+        padding: 0em;
+        margin: 2em 0;
+    }
+
+    .product-info {
+        flex-direction: column;
+        margin: 2em 0;
+
+        .imgs-selector {
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: auto;
+            padding: 0;
+            margin-bottom: 1em;
+            justify-content: center;
+
+            img {
+                margin: 0 .5em;
+            }
+        }
+
+        .active-img-container {
+            width: 100%;
+            padding: 0;
+            max-height: 15em;
+
+            img {
+                max-width: 90%;
+            }
+        }
+
+        .product-name-price-actions-container {
+            margin: 0 auto;
+            max-width: 90%;
+
+            .name {
+                font-size: 1.4rem;
+                margin: 1em 0;
+            }
+
+            .price {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            .action-btns {
+                margin: 1em 0;
+            }
+        }
+    }
+    .questions-answers-container {
+        .all-questions-answers {
+            max-width: 90%;
+        }
+    }
+}

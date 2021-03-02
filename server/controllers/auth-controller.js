@@ -10,7 +10,7 @@ const isUserConnected_get = (req, res) => {
 
 const signIn_post = async (req, res) => {
     const { username, password } = req.body;
-    if(!username || !password) return res.status(401).send('Complete the form please');
+    if(!username || !password) return res.status(400).send('Complete the form please');
 
     const isUsernameTaken = await User.findOne({ username: username.toLowerCase() });
     if(isUsernameTaken) return res.status(400).send('Username already exists');
@@ -21,7 +21,7 @@ const signIn_post = async (req, res) => {
         password: hashPassword
     });
     await newUser.save();
-    res.send('/log-in');
+    res.send('/login');
 };
 
 const login_post = async (req, res) => {
@@ -37,9 +37,15 @@ const login_post = async (req, res) => {
     })(req, res);
 }
 
+const logOut_get = async (req, res) => {
+    req.logout();
+    res.send('/');
+}
+
 
 module.exports = {
     isUserConnected_get,
     signIn_post,
-    login_post
+    login_post,
+    logOut_get
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CartProductsList from './cart-products-list';
 
-const CartItems = ({ products, id, getCart }) => {
+const CartItems = ({ products, id, getCart, setCart }) => {
     const [totalPrice, setTotalPrice] = useState('');
     const getTotalPrice = () => {
         const parseNumber = products.map(product => Number(product.price));
@@ -13,7 +13,7 @@ const CartItems = ({ products, id, getCart }) => {
         <>
             <h2 className="query">Your Cart</h2>
             <div className="cart-container">
-                <CartProductsList products={products} id={id} getCart={getCart} />
+                <CartProductsList products={products} id={id} getCart={getCart} setCart={setCart}/>
                 <div className="buy-products-container">
                     <h2 className="total-price">Total amount: ${totalPrice}</h2>
                     <button className="buy-cart">Buy</button>

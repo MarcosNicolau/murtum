@@ -5,6 +5,7 @@ import Info from '../product/info';
 import Description from '../product/description';
 import MyProductQuestons from './my-product-questions';
 import getProduct from '../../utils/get-single-product';
+import Loader from '../loader';
 import axios from 'axios';
 
 const ChangeMyProducts = () => {
@@ -12,10 +13,15 @@ const ChangeMyProducts = () => {
     const { id } = useParams();
     const [product, setProduct] = useState('loading');
 
-    useEffect(() => getProduct(axios.post(`/user/my-products/edit`, {id: user.id, productId: id}), setProduct), []);
+    useEffect(() => {
+        if(user === 'loading') return;
+        if(!user) return window.location.href = '/login';
+        getProduct(axios.post(`/my-products/edit`, {id: user.id, productId: id}), setProduct)
+    }, [user]);
 
-    if(product === 'loading') return <h1>Loading...</h1>
+    if(product === 'loading') return <Loader />
     if(!product) return <h1>Product not found</h1>
+    console.log(product);
 
     return (
         <div className='product-container'>

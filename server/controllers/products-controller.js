@@ -1,6 +1,8 @@
 const Product = require('../models/product-model');
 const Section = require('../models/section-model');
 const User = require('../models/user-model');
+const getProduct = require('../utils/getProduct');
+const getPages = require('../utils/get-pages');
 
 
 const sections_get = async (req, res) => {
@@ -9,33 +11,21 @@ const sections_get = async (req, res) => {
 }
 
 const searchResult_get = async (req, res) => {
-    const { search } = req.query;
+    const { search, length } = req.query;
     const searchResults = await Product.find({
         $or: [
             { category: search },
             { name: search }
         ]
      }).sort({createdAt: -1});
-    const setProps = searchResults.map(result => {
-        return {
-            id: result._id,
-            image: result.images[0],
-            name: result.name,
-            price: result.price,
-        }
-    })
-
-    res.send(setProps);
+    const contentPageLimit = 10;
+    const { products, pages } = getPages(contentPageLimit, searchResults, length);
+    res.send({ products, pages });
 }
 
 const product_get = async (req, res) => {
-    const id  = req.params.id;
-    const product = await Product.findById(id);
-    if(!product) return res.status(404).send(product);
-    const { name, images, price, description, questions } = product;
-    const sortedQuestions = questions.sort((a, b) => b.createdAt - a.createdAt);
-    res.send({ name, images, price, description, questions: sortedQuestions });
-
+    const id = req.params.id;
+    getProduct(id, req, res);
 }
 
 const sendQuestion_post = async (req, res) => {
@@ -44,25 +34,27 @@ const sendQuestion_post = async (req, res) => {
     const product = await Product.findById(productId);
     product.questions.push({ question, answer: '', createdAt: Date.now() });
     await product.save();
-    
-    res.send(product.questions);
+    const sortedQuestions = product.questions.sort((a, b) => b.createdAt - a.createdAt);
+    res.send(sortedQuestions);
 }
 
 const newProduct_post = async (req, res) => {
-    const { name, description, price, category,images, id } = req.body;
+    const { name, description, price, category, images, id } = req.body;
+    if(!name || !description || !price || !category || !images.length || !id) return res.status(400).send('Complete all the fields');
     const user = await User.findById(id);
     if(!user) return res.status(401).send('/login');
-
     const newProduct = new Product({
         name,
         description,
         price: Number(price),
         category,
-        images
+        images,
+        owner: id
     });
+
     try{
         const savedProduct = await newProduct.save();
-        user.products.push({ productName: savedProduct.name, productId: savedProduct._id });
+        user.products.push(savedProduct._id);
         await user.save();
         res.send('/my-products');
     }

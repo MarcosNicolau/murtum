@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
+import Loader from '../loader';
 import '../../styles/product/questions.scss';
 
-const Questions = ({ productQuestions, productId, user }) => {
+const Questions = ({ productQuestions, productId, user, isOwn }) => {
     const [question, setQuestion] = useState('');
     const [questions, setQuestions] = useState(productQuestions);
     const [loading, setLoading] = useState(false);
@@ -22,16 +23,18 @@ const Questions = ({ productQuestions, productId, user }) => {
             console.log(err);
         }
     }
-
+    console.log(isOwn);
     return (
         <div className="questions-answers-container">
             <h2>Questions and answers</h2>
-            <div className="send-questions">
-                <textarea placeholder='Ask...' value={question} className='text-inputs' onChange={e => setQuestion(e.target.value)}></textarea>
-                <button className="ask-btn" onClick={sendQuestion}>Aks</button>
-            </div>
+            {isOwn || 
+                <div className="send-questions">
+                    <textarea placeholder='Ask...' value={question} className='text-inputs' onChange={e => setQuestion(e.target.value)}></textarea>
+                    <button className="ask-btn" onClick={sendQuestion}>Ask</button>
+                </div> 
+            }
+            {loading && <Loader />}
             <div className="all-questions-answers">
-                {loading && <h1>Loading...</h1>}
                 {questions.map(question => {
                     return (
                         <div key={question.createdAt} className="single-question-answer">

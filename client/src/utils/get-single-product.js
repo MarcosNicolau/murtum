@@ -5,6 +5,7 @@ const getProduct = async (endpoint, setter) => {
     }
     catch(err) {
         if(err.response.status === 404) return setter(err.response.data);
+        if(err.reponse.status === 401) return window.location.href = '/';
     }
 }
 

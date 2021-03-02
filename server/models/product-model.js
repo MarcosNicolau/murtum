@@ -22,6 +22,10 @@ const productSchema = new Schema({
         required: true,
         type: Array
     },
+    owner: {
+        required: true,
+        type: String
+    },
     questions: Array
 }, { timestamps: true });
 

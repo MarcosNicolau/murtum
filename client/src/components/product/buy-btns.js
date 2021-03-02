@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
+import Loader from '../loader';
 import axios from 'axios';
 
-const BuyBtns = ({ user, productId }) => {
+const BuyBtns = ({ user, productId, isOwn }) => {
     const [isProductInCart, setIsProductInCart] = useState('loading');
     const addToCart = async () => {
         if(!user) return window.location.href = '/login';
         try{
-            const res = await axios.post('/user/cart/add-cart', { id: user.id, productId });
+            setIsProductInCart('loading');
+            const res = await axios.post('/cart/add-cart', { id: user.id, productId });
             setIsProductInCart(res.data);
         }
         catch(err){
@@ -14,15 +16,17 @@ const BuyBtns = ({ user, productId }) => {
         }
     }
     const checkIfProductIsAdded = async () => {
-        const res = await axios.post('/user/cart/is-item-in-cart', { id: user.id, productId });
+        const res = await axios.post('/cart/is-item-in-cart', { id: user.id, productId });
         setIsProductInCart(res.data);
     }
 
     useEffect(() => {
         if(user) return checkIfProductIsAdded();
+        setIsProductInCart(false);
     }, []);
     
-    if(isProductInCart === 'loading') return <h1>Loading...</h1>
+    if(isOwn) return null;
+    if(isProductInCart === 'loading') return <Loader relative={'true'}/>;
     return (
         <div className="action-btns">
             <button className='buy-now-btn'>Buy now</button>

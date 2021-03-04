@@ -1,0 +1,94 @@
+@import '../library';
+
+.edit-container {
+    @include flex-center(row);
+    justify-content: unset;
+    width: 100%;
+    .edit-input {
+        font-family: $secondary-font;
+        resize: none;
+        margin: 2em 1em;
+        border: none;
+        outline: none;
+        font-size: $small-size;
+        border-bottom: solid .2rem $primary-color;
+        padding: 1em 1em 0.5em 1em;
+        max-width: 85%;
+        @include transition(all, 150ms);
+
+        &:focus {
+            border-color: #59769b;
+            @include transition(all, 150ms);
+        }
+    }
+}
+
+.imgs-selector {
+    position: relative;
+    .img-container {
+        position: relative;
+    }
+
+    .delete-img-btn {
+        background-color: transparent;
+        color: white;
+        font-size: $small-size;
+        position: absolute;
+        top: .5em;
+        right: -.2em;
+    }
+
+    .update-imgs {
+        position: relative;
+        @include flex-center(column);
+        height: 100%;
+        margin: 1em 0;
+        .update-imgs-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            @include transition(color, 150ms);
+            &:hover {
+                color: rgb(82, 82, 82);
+                @include transition(color, 150ms);
+            }
+        }
+
+        .update-imgs-btn {
+            position: absolute;
+            bottom: 0;
+        }
+        
+        .img-file-input {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+    }
+    
+}
+
+
+.edit-icon {
+    background-color: transparent;
+    margin: 0 .2em;
+    font-size: 1.2rem;
+}
+
+.submit-change-btn {
+    @include btn($small-size, black, rgba(231, 231, 231, 0.582));
+    padding: .8rem 1.6rem;
+    font-weight: 500;
+    @include transition(background-color, 150ms);
+
+    &:hover {
+        background-color: rgba(211, 211, 211, 0.582);
+        @include transition(background-color, 150ms);
+    }
+}
+
+.update-images-btn {
+    margin: 1em 0;
+}

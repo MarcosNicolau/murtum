@@ -26,7 +26,7 @@ const MyProductQuestons = ({ productQuestions, productId }) => {
         <div className="questions-answers-container">
             <h2>Questions and answers</h2>
             <div className="all-questions-answers">
-                {loading && <Loader />}
+                {loading && <Loader relative={'true'}  />}
                 {questions.map(question => {
                     return (
                         <div key={question.createdAt} className="single-question-answer">

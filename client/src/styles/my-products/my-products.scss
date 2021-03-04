@@ -1,4 +1,4 @@
-@import 'library';
+@import '../library';
 
 .products-container {
     @include grid-layout;

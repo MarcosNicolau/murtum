@@ -1,6 +1,7 @@
 const User = require('../models/user-model');
 const Product = require('../models/product-model');
 const getProduct = require('../utils/getProduct');
+const editProductField = require('../utils/edit-product-field');
 
 const myProducts_post = async (req, res) => {
     const { id, length } = req.body;
@@ -14,17 +15,38 @@ const myProducts_post = async (req, res) => {
             id: product._id,
             price: product.price,
             image: product.images[0],
-            questions: product.questions
+            questions: product.questions,
+            createdAt: product.createdAt
        });
     } 
     const hasLoaded = products.length === user.products.length ? 'loaded' : false;
-    res.send({products, hasLoaded});
+    const sortProducts = products.sort((a, b) => b.createdAt - a.createdAt); 
+    res.send({products: sortProducts, hasLoaded});
 }
 
 const editProduct_post = async (req, res) => {
     const id = req.body.productId;
     getProduct(id, req, res);
 }
+
+const editProductName_post = async (req, res) => {
+    const { name, productId } = req.body;
+    await editProductField('name', name, productId);
+    getProduct(productId, req, res);
+}
+
+const editProductPrice_post = async (req, res) => {
+    const { price, productId } = req.body;
+    await editProductField('price', price, productId);
+    getProduct(productId, req, res);
+}
+
+const editProductImages_post = async (req, res) => {
+    const { images, productId } = req.body;
+    await editProductField('images', images, productId);
+    getProduct(productId, req, res);
+}
+
 
 const sendAnswer_post = async (req, res) => {
     const { answer, productId, item } = req.body;
@@ -49,6 +71,9 @@ const deleteProduct_post = async (req, res) => {
 module.exports = {
     myProducts_post,
     editProduct_post,
+    editProductName_post,
+    editProductPrice_post,
+    editProductImages_post,
     sendAnswer_post,
     deleteProduct_post
 }

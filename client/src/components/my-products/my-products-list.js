@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
-import '../../styles/my-products.scss';
+import '../../styles/my-products/my-products.scss';
 
 const ProductList = ({ products, getUserProducts, user, setProducts }) => {
     const checkAnswers = (product) => {

@@ -33,7 +33,7 @@ const Questions = ({ productQuestions, productId, user, isOwn }) => {
                     <button className="ask-btn" onClick={sendQuestion}>Ask</button>
                 </div> 
             }
-            {loading && <Loader />}
+            {loading && <Loader relative={'true'}/>}
             <div className="all-questions-answers">
                 {questions.map(question => {
                     return (

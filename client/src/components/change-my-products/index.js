@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useUserContext } from '../../user-context';
-import Info from '../product/info';
+import MyProductInfo from './my-product-info';
 import Description from '../product/description';
 import MyProductQuestons from './my-product-questions';
 import getProduct from '../../utils/get-single-product';
@@ -16,16 +16,15 @@ const ChangeMyProducts = () => {
     useEffect(() => {
         if(user === 'loading') return;
         if(!user) return window.location.href = '/login';
-        getProduct(axios.post(`/my-products/edit`, {id: user.id, productId: id}), setProduct)
+        getProduct(axios.post(`/my-products/edit`, {id: user.id, productId: id}), setProduct);
     }, [user]);
 
     if(product === 'loading') return <Loader />
     if(!product) return <h1>Product not found</h1>
-    console.log(product);
 
     return (
         <div className='product-container'>
-            <Info images={product.images} name={product.name} price={product.price}/>
+            <MyProductInfo images={product.images} name={product.name} price={product.price} productId={id} setProduct={setProduct}/>
             <Description description={product.description} />
             <MyProductQuestons productQuestions={product.questions} productId={id}/>
         </div>

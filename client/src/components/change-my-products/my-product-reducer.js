@@ -1,5 +1,4 @@
 export const infoState = {
-    images: [],
     updatedImages: [],
     activeImg: undefined,
     editImage: false,
@@ -18,7 +17,6 @@ export const infoState = {
 }
 
 export const INFO_ACTIONS = {
-    SET_IMAGES: 'set-images',
     SET_UPDATED_IMAGES: 'set-updated-imgs',
     DELETE_IMAGE: 'delete-img',
     SET_EDIT_IMG: 'set-edit-img',
@@ -33,8 +31,6 @@ export const INFO_ACTIONS = {
 
 const infoReducer = (state, action) => {
     switch(action.type) {
-        case INFO_ACTIONS.SET_IMAGES: 
-            return { ...state, images: [...state.images, ...action.payload]}
         case INFO_ACTIONS.SET_UPDATED_IMAGES:
             return { ...state, updatedImages: [...state.updatedImages, ...action.payload] }
         case INFO_ACTIONS.SET_EDIT_IMG:

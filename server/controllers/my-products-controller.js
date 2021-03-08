@@ -6,7 +6,7 @@ const editProductField = require('../utils/edit-product-field');
 const myProducts_post = async (req, res) => {
     const { id, length } = req.body;
     const user = await User.findById(id);
-    const productsLimit = user.products.filter((product, index) => index <= length + 6);
+    const productsLimit = user.products.filter((product, index) => index <= length + 9);
     let products = [];
     for await (const productId of productsLimit){
        const product = await Product.findById(productId);
@@ -47,6 +47,12 @@ const editProductImages_post = async (req, res) => {
     getProduct(productId, req, res);
 }
 
+const editProdutDescription_post = async (req, res) => {
+    const { description, productId } = req.body;
+    await editProductField('description', description, productId);
+    getProduct(productId, req, res);
+}
+
 
 const sendAnswer_post = async (req, res) => {
     const { answer, productId, item } = req.body;
@@ -74,6 +80,7 @@ module.exports = {
     editProductName_post,
     editProductPrice_post,
     editProductImages_post,
+    editProdutDescription_post,
     sendAnswer_post,
     deleteProduct_post
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useQuery from '../../utils/use-query';
-import ProductsList from "../product-list";
+import ProductsList from '../product-list';
 import Pages from './pages';
 import axios from 'axios';
 import Loader from '../loader';
@@ -13,34 +13,30 @@ const SearchResult = () => {
     const [productsPages, setProductPages] = useState([]);
 
     const getItems = async () => {
-        try{
-            const res = await axios.get(`/products?search=${search}&length=${length}`);
+        try {
+            const res = await axios.get(
+                `/products?search=${search}&length=${length}`
+            );
             setProducts(res.data.products);
-            setProductPages(res.data.pages)
-        }
-        catch(err){
+            setProductPages(res.data.pages);
+        } catch (err) {
             console.log(err);
         }
-    }
-
-    const changePage = async page => {
-        const res = await axios.get(`/products?search=${search}&length=${page}`);
-        setProducts(res.data.products);
-        setProductPages(res.data.pages)
-    }
+    };
 
     useEffect(() => getItems(), []);
 
-    if(!products) return <Loader />
-    if(!products.length) return <h1 className='negative-search'>No products were found</h1>
-    
+    if (!products) return <Loader />;
+    if (!products.length)
+        return <h1 className="negative-search">No products were found</h1>;
+
     return (
         <>
-            <h2 className='query'>{search}</h2>
-            <ProductsList products={products}/>
-            <Pages pages={productsPages} length={Number(length)} />
+            <h2 className="query">{search}</h2>
+            <ProductsList products={products} />
+            <Pages pages={productsPages} length={length} search={search} />
         </>
     );
-}
+};
 
 export default SearchResult;

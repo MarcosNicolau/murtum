@@ -33,6 +33,12 @@ mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
 .then(() => app.listen(PORT), console.log(`server listening on ${PORT}`))
 .catch((err) => console.log(err));
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('./build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+    });
+}
 
 app.use('/my-products', userRoutes);
 app.use('/cart', cartRoutes);

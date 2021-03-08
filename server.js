@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const mongoose = require('mongoose');
+const path = require('path');
 const passport = require('passport');
 const passportLocalStrategy = require('./config/passport-config');
 const authRoutes = require('./routes/auth-routes');

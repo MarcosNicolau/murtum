@@ -29,10 +29,15 @@ app.use(passport.initialize());
 app.use(passport.session(session()));
 passportLocalStrategy(passport);
 
-
 mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
 .then(() => app.listen(PORT), console.log(`server listening on ${PORT}`))
 .catch((err) => console.log(err));
+
+app.use('/my-products', userRoutes);
+app.use('/cart', cartRoutes);
+app.use('/auth', authRoutes);
+app.use('/products', productsRoutes);
+app.use('/payment', paymentRoutes);
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
@@ -40,9 +45,3 @@ if(process.env.NODE_ENV === 'production'){
         res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
     });
 }
-
-app.use('/my-products', userRoutes);
-app.use('/cart', cartRoutes);
-app.use('/auth', authRoutes);
-app.use('/products', productsRoutes);
-app.use('/payment', paymentRoutes);
